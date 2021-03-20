@@ -9,32 +9,9 @@
 #include <sys/wait.h>
 void detectarSignal();
 int main(void){
-    pid_t proceso1, proceso2, proceso3;
-
-    proceso1 = fork();
-    if(proceso1){
-        printf("pid: %d",getpid());
-        detectarSignal();
-        exit(0);
-    }
-    proceso2 = fork();
-    if(proceso2){
-        printf("pid: %d",getpid());
-        detectarSignal();
-        exit(0);
-    }
-    proceso3 = fork();
-    if(proceso3){
-        printf("pid: %d",getpid());
-        detectarSignal();
-        exit(0);
-    }
-        int status;
-
-        // Esperando por los hijos izquierdo y derecho del nodo actual o proceso padre actual
-        waitpid(proceso1, &status, 0);
-        waitpid(proceso2, &status, 0);
-        waitpid(proceso3, &status, 0);
+    printf("Id proceso:%d\n", getpid());
+    detectarSignal();
+    printf("Id proceso:%d\n", getpid());
     return 0;
 }
 void detectarSignal(){

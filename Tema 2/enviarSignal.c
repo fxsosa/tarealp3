@@ -4,13 +4,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-#include <time.h>
-
-//time_t startExec;
-
 int main(void){
-    //lineas de prueba
-    //startExec = time(NULL);// anota el segundo cuando se inicio el programa
 
     //se abre el archivo
     FILE *ptrFile = fopen("procesos.txt", "r");
@@ -41,14 +35,11 @@ int main(void){
                 //imprimesignal
                 //efectuar el delay
                 sleep(atoi(delay));
-                //lineas de prueba
-                //time_t startsig;
-                //startsig = time(NULL);
 
                 //enviar señal
-                //kill(atoi(procesoId), atoi(signal));
+                kill(atoi(procesoId), atoi(signal));
                 //lineas de prueba
-                printf("proceso: %s signal: %s delay calculado: ld\n", procesoId, signal/*,startsig - startExec*/ );
+                printf("Enviando señal %s al proceso %s ", signal, procesoId /*,startsig - startExec*/ );
                 exit(0);
             }
             fscanf(ptrFile, "%s", procesoId);
