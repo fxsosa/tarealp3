@@ -52,7 +52,11 @@ void imprimirArbol(int array[]){
         }
         printf("\n");
 
-        tabulacionElementos = (longitudArray / nodosPorNivel) + 1;
+        if( (float)longitudArray / nodosPorNivel > (int)(longitudArray / nodosPorNivel) )
+            tabulacionElementos = (longitudArray / nodosPorNivel) + 1;
+        else
+            tabulacionElementos = (longitudArray / nodosPorNivel);
+
         for(int i = 0; i < indiceTabulacion; i++){
             printf("\t");
         }
