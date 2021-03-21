@@ -35,11 +35,12 @@ int main(int argc, char **argv){
     //funcion para cargar los numeros ingresados al array
     parsearArray(argv, arrayNumerico);
 
+    imprimirArbol(arrayNumerico);
     //ordenacion
-    mergeSort(arrayNumerico);
+    //mergeSort(arrayNumerico);
 
     //imprime el array ordenado
-    imprimirArray(arrayNumerico, 0, longitudArray - 1);
+    //imprimirArray(arrayNumerico, 0, longitudArray - 1);
 
     //elimina la memoria
     if (shmdt(arrayNumerico) == -1)

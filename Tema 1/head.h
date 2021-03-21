@@ -19,3 +19,4 @@ void sortSubArray(int array[], int low, int high, int nivelActual);
 void merge(int array[], int left, int middle1, int middle2, int right);
 
 void imprimirArray(int array[], int inicio, int fin);
+void imprimirArbol(int array[]);

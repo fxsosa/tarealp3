@@ -32,6 +32,45 @@ void imprimirArray(int array[], int inicio, int fin){
     printf("\n");
 }
 
+void imprimirArbol(int array[]){
+   int indiceTabulacion = nivelesArbol;
+   int procesoActual = 0;
+   int tabulacionElementos = 0;
+   int nodosPorNivel;
+
+   for(int nivelActual = 0; nivelActual < nivelesArbol; nivelActual++){
+       indiceTabulacion--;
+        nodosPorNivel = pow(2, nivelActual);
+        for(int i = 0; i < indiceTabulacion; i++){
+            printf("\t");
+        }
+
+        for(int i = 0; i < nodosPorNivel; i++ ){
+                printf("Proceso %d", procesoActual);
+                printf("\t");
+                procesoActual++;
+        }
+        printf("\n");
+
+        tabulacionElementos = (longitudArray / nodosPorNivel) + 1;
+        for(int i = 0; i < indiceTabulacion; i++){
+            printf("\t");
+        }
+        int contadorElementos = 0;
+        for(int i = 0; i < longitudArray; i++){
+            printf("%d", array[ i ]);
+            if(i + 1 < longitudArray){
+                printf(",");
+            }
+            contadorElementos++;
+            if(contadorElementos == tabulacionElementos){
+                printf("\t");
+                contadorElementos = 0;
+            }
+        }
+        printf("\n");
+   }
+}
 // unir 2 subarrays ordenados en un solo array ordenado
 void merge(int array[], int left, int middle1, int middle2, int right)
 {
