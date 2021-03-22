@@ -37,10 +37,10 @@ int main(int argc, char **argv){
 
     imprimirArbol(arrayNumerico);
     //ordenacion
-    //mergeSort(arrayNumerico);
+    mergeSort(arrayNumerico);
 
     //imprime el array ordenado
-    //imprimirArray(arrayNumerico, 0, longitudArray - 1);
+    imprimirArray(arrayNumerico, 0, longitudArray - 1);
 
     //elimina la memoria
     if (shmdt(arrayNumerico) == -1)

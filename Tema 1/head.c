@@ -37,6 +37,7 @@ void imprimirArbol(int array[]){
    int procesoActual = 0;
    int tabulacionElementos = 0;
    int nodosPorNivel;
+   int longitudArrayTemp = longitudArray;
 
    for(int nivelActual = 0; nivelActual < nivelesArbol; nivelActual++){
        indiceTabulacion--;
@@ -52,11 +53,12 @@ void imprimirArbol(int array[]){
         }
         printf("\n");
 
-        if( (float)longitudArray / nodosPorNivel > (int)(longitudArray / nodosPorNivel) )
-            tabulacionElementos = (longitudArray / nodosPorNivel) + 1;
-        else
-            tabulacionElementos = (longitudArray / nodosPorNivel);
-
+        if(nivelActual > 0){
+            if( (float)longitudArrayTemp / 2 >= (int)(longitudArrayTemp / 2))
+                tabulacionElementos = (longitudArrayTemp / 2) + 1;
+            else
+                tabulacionElementos = (longitudArrayTemp / 2);
+        }
         for(int i = 0; i < indiceTabulacion; i++){
             printf("\t");
         }
@@ -71,6 +73,12 @@ void imprimirArbol(int array[]){
                 printf("\t");
                 contadorElementos = 0;
             }
+        }
+        if(nivelActual > 0){
+            if((float)longitudArrayTemp / 2 >= (int)(longitudArrayTemp / 2))
+                longitudArrayTemp = tabulacionElementos - 1;
+            else
+                longitudArrayTemp = tabulacionElementos;
         }
         printf("\n");
    }
@@ -121,8 +129,8 @@ void sortSubArray(int array[], int low, int high, int nivelActual)
         //si el nivel actual del arbol de procesos es mayor que su nivel impuesto por la cantidad de nodos
         //ordenacion normal del merge, sin procesos
         if( nivelActual + 1 > nivelesArbol ){
-            sortSubArray(array, low, middle1, 0);
-            sortSubArray(array, middle2, high, 0);
+            sortSubArray(array, low, middle1, nivelActual);
+            sortSubArray(array, middle2, high, nivelActual);
 
             merge(array, low, middle1, middle2, high);
             return;
@@ -149,7 +157,7 @@ void sortSubArray(int array[], int low, int high, int nivelActual)
 
             //mientras la cantidad de nodos no sea la maxima, el proceso queda ejecutando este bucle, retrasando la creacion
             //de sus procesos hijos
-            while( array[ longitudArray + nivelActual ] < pow(2, nivelActual));
+            while( array[ longitudArray + nivelActual ] < pow(2, nivelActual) && nivelActual + 1 < nivelesArbol);
 
             //Una vez que todos los procesos hijos correspondientes al nivel fueron creados, entonces
             sortSubArray(array, low, middle1, nivelActual + 1); // first half
@@ -176,7 +184,7 @@ void sortSubArray(int array[], int low, int high, int nivelActual)
                 //Aumentamos la cantidad de nodos de su nivel respectivo
                 array[ longitudArray + nivelActual ]++;
                 //mientras que la cantidad de nodos en ese nivel no llegue al maximo, seguir el bucle
-                while( array[ longitudArray + nivelActual ] < pow(2, nivelActual));
+                while( array[ longitudArray + nivelActual ] < pow(2, nivelActual) && nivelActual + 1 < nivelesArbol);
                 //una vez que haya alcanzado la cantidad maxima de hijos en el nivel, ejecutar lo siguiente
                 sortSubArray(array, middle2, high, nivelActual + 1);
                 //terminacion del proceso
