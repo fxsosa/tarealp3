@@ -42,29 +42,17 @@ int main(void){
                     tiempoActual = time(NULL);
                     printf("Intentando enviar la señal %s al proceso %s \n", signal, procesoId );
                     if(signalInt == 9){
-                        if ( kill(atoi(procesoId), signalInt)) {
-                            printf("El proceso con pid:%s no se ha encontrado\n",procesoId);
-                            exit(0);
-                        }
-                        else{
-                            printf("Se mando la senal SIGKILL al proceso %s, en %ld segundos", procesoId, tiempoActual - tiempoInicio);
-                            kill(atoi(procesoId), signalInt);
-                            exit(0);
-                        }
+                        printf("Se mando la senal SIGKILL al proceso %s, en %ld segundos\n", procesoId, tiempoActual - tiempoInicio);
+                        kill(atoi(procesoId), signalInt);
+                        exit(0);
                     }
                     else if(signalInt == 19){
-                        if ( kill(atoi(procesoId), signalInt)) {
-                            printf("El proceso con pid:%s no se ha encontrado\n",procesoId);
-                            exit(0);
-                        }
-                        else{
-                            printf("Se mando la senal SIGSTOP al proceso %s, en %ld segundos", procesoId, tiempoActual - tiempoInicio);
-                            kill(atoi(procesoId), signalInt);
-                            kill(atoi(procesoId), 9); // para que el proceso pueda continuar
-                            exit(0);
-                        }
+                        printf("Se mando la senal SIGSTOP al proceso %s, en %ld segundos\n", procesoId, tiempoActual - tiempoInicio);
+                        kill(atoi(procesoId), signalInt);
+                        kill(atoi(procesoId), 9); // para que el proceso pueda continuar
+                        exit(0);
                     }
-                    else if ( kill(atoi(procesoId), signalInt)) {
+                    else if (kill(atoi(procesoId), signalInt)) {
                         printf("El proceso con pid:%s no se ha encontrado\n",procesoId);
                         exit(0);
                     }
