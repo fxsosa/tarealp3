@@ -8,6 +8,7 @@
 int main(void){
     time_t tiempoInicio, tiempoActual;
     tiempoInicio = time(NULL);
+    printf("Leyendo el archivo de procesos...\n");
     //se abre el archivo
     FILE *ptrFile = fopen("procesos.txt", "r");
 

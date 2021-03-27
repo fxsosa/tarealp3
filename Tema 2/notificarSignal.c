@@ -69,6 +69,6 @@ void detectarSignal(){
         return;
     } // End if
     else{
-        fprintf(stderr, "se recibio la signal #%d\n", signalNbr);
+        fprintf(stdout, "se recibio la signal #%d\n", signalNbr);
     }
 }
