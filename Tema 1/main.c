@@ -34,6 +34,7 @@ int main(int argc, char **argv){
     }
     //funcion para cargar los numeros ingresados al array
     parsearArray(argv, arrayNumerico);
+    arrayNumerico[ longitudArray + nivelesArbol ] = numeroProcesos;
 
     imprimirArbol(arrayNumerico);
     //ordenacion
