@@ -17,7 +17,7 @@ int main(int argc, char **argv){
 
     //Memoria compartida para almacenar el array y compartir entre procesos, tiene un tamaño igual a la longitud del array mas los niveles del
     //arbol, ese plus se le asigna para coordinar los procesos
-    size_t SHM_SIZE = (longitudArray + nivelesArbol) * sizeof( int );
+    size_t SHM_SIZE = (longitudArray + nivelesArbol+1) * sizeof( int );
 
     //Crea el segmento de memoria
     if ((shmid = shmget(key, SHM_SIZE, IPC_CREAT | 0666)) < 0)

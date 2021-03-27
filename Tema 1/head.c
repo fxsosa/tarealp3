@@ -121,6 +121,7 @@ void merge(int array[], int left, int middle1, int middle2, int right)
 // funcion que recibe el array a ordenar, el indice bajo, alto y el nivelActual respectivo del arbol
 void sortSubArray(int array[], int low, int high, int nivelActual)
 {
+    int i;
     // caso base si el array tiene una longitud de 1
     if ((high - low) >= 1) {
         int middle1 = (low + high) / 2;
@@ -197,10 +198,89 @@ void sortSubArray(int array[], int low, int high, int nivelActual)
         // Esperando por los hijos izquierdo y derecho del nodo actual o proceso padre actual
         waitpid(lpid, &status, 0);
         waitpid(rpid, &status, 0);
-
+        //**********************************IMPRESIONES******************************************************************************
+        //impresion del primer proceso hijo
+        
+        printf("\nProceso %i lista ordenada: {", array[longitudArray + nivelesArbol]);
+        array[longitudArray + nivelesArbol]--;
+        for(i=low; i<=middle1 ; i++)
+        {
+            printf("%i", array[i]);
+            if(i != middle1)
+            {
+                printf(",");
+            }
+            else
+            {
+                printf(" }");
+            }      
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //imopresion del segundo proceso hijo
+        printf("\nProceso %i lista ordenada: {", array[longitudArray + nivelesArbol]);
+        array[longitudArray + nivelesArbol]--;
+        for(i=middle2; i<=high ; i++)
+        {
+            printf("%i", array[i]);
+            if(i != high)
+            {
+                printf(",");
+            }
+            else
+            {
+                printf(" }");
+            }  
+        }     
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+        //impresion de los dos procesos que juntos dan al padre un array arreglado          
+        printf("\nProceso %i: lista izquierda {", array[longitudArray + nivelesArbol]);
+        array[longitudArray + nivelesArbol]--;
+        for(i=low; i<=middle1 ; i++)
+        {
+            printf("%i", array[i]);
+            if(i != middle1)
+            {
+                printf(",");
+            }
+            else
+            {
+                printf(" }");
+            }      
+        }
+        
+        printf(", lista derecha{");
+        for(i=middle2; i<=high ; i++)
+        {
+            printf("%i", array[i]);
+            if(i != high)
+            {
+                printf(",");
+            }
+            else
+            {
+                printf(" }");
+            }  
+        }     
         //union de los resultados de cada hijo
         merge(array, low, middle1, middle2, high);
+        ////////////////////////////IMPRESION DEL LA MEZCLA HECHA AL RECIBIR LAS DOS PARTICIONES//////////////////////////////////////////////////
+        printf("⇒");
+        printf("{");
+        for(i=low; i<=high ; i++)
+        {
+            printf("%i", array[i]);
+            if(i != high)
+            {
+                printf(",");
+            }
+            else
+            {
+                printf(" }");
+            }  
+        }     
+        printf("\n");
     }
+
 }
 void mergeSort(int array[])
 {
